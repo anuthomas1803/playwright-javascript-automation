@@ -1,7 +1,7 @@
 //client app test cases using special locators 
 
 const{test,expect}=require("@playwright/test")
-test("ClientApp Automation Using Special Locators", async({page})=>{
+test("Clientapp login using special locators", async({page})=>{
     page.goto("https://www.saucedemo.com/")
     await page.getByPlaceholder("Username").fill("standard_user")
     await page.getByPlaceholder("Password").fill("secret_sauce")
@@ -29,7 +29,7 @@ test("ClientApp Automation Using Special Locators", async({page})=>{
    await expect(page.getByText("Checkout: Your Information")).toBeVisible() 
    await page.getByPlaceholder("First Name").fill("Anumol")
    await page.getByPlaceholder("Last Name").fill("Thomas")
-   await page.getByPlaceholder("Zip/Postal Code").fill("AnuAdminUser")
+   await page.getByPlaceholder("Zip/Postal Code").fill("67704")
    await page.getByRole("button",{name:"continue"}).click()
 
    await page.locator(".inventory_item_name").waitFor()

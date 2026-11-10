@@ -140,8 +140,8 @@ test('test', async ({ page }) => {
 
 //SPECIAL LOCATORS : locators with highest priority
 
-test.only("Special locators" ,async({page})=>{
-await page.goto("https://selenium.qabible.in/check-box-demo.php")
+test("Special locators" ,async({page})=>{
+await page.goto("https://selenium.qabible.in/index.php")
 await page.getByRole("link",{name:"Input Form"}).click() //  locating hyperlink & button
 await page.getByRole("link",{name:"Checkbox Demo"}).click()
 await page.getByLabel("Click on this check box").check()
@@ -168,4 +168,33 @@ await page.getByPlaceholder("Message").fill("Hello World")
 await page.getByRole("button",{name:"Show Message"}).click()
 await expect(page.getByText("Your Message : Hello World")).toBeVisible()
 await page.pause()
+})
+
+const year=1997
+const month=11
+const date=12
+test("Calendar Validation",async({page})=>{
+    await page.goto("https://selenium.qabible.in/index.php")
+    await page.getByRole("link",{name:"Date Pickers"}).click()
+    await page.getByRole("link",{name:"Bootstrap Date Picker"}).click()
+    await page.locator("#single-input-field").click()
+ await page.locator(".datepicker-days th.datepicker-switch").click()
+ await page.locator(".datepicker-months th.datepicker-switch").click()
+ while(true){
+    const currentdecade= await page.locator(".datepicker-years th.datepicker-switch").textContent() //range of years
+    const startdecade= parseInt(currentdecade.split("-")[0])
+    if(year>=startdecade && year<=startdecade+9){
+        break; // no need to go to next or previous button ; exit while loop
+    }
+    if(year<startdecade){
+    await page.locator(".datepicker-years th.prev").click() //click on previous arrow button
+     }
+   else{
+    await page.locator(".datepicker-years th.next").click()
+   }
+  }
+    await page.getByText(year.toString(),{exact:true}).click()//year selection
+    await page.locator(".month").nth(month-1).click() // month selection, month is string in calendar but we have defined as number
+    await page.getByText(date.toString(),{exact:true}).click()
+    await page.pause()
 })
