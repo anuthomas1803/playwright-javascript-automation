@@ -59,7 +59,7 @@ await page.goto("https://selenium.qabible.in/check-box-demo.php")
 await page.locator(".nav-item").nth(1).click()  //starts from  0th element 
 await page.locator(".list-group-item").nth(1).click()
 await page.locator("#gridCheck").check() //checkbox check or click can be used 
- expect(await page.locator("#gridCheck").isChecked()).toBeTruthy() //function should be executed first then only tobe truthy. so expect there
+ expect(await page.locator("#gridCheck").isChecked()).toBeTruthy() 
  //Radio button
 await page.locator(".list-group-item").nth(2).click()
 await page.locator("#inlineRadio1").check() //male radio button

@@ -1,4 +1,4 @@
-const {test,expect} =require("@playwright/test");       //wait function
+const {test,expect} =require("@playwright/test");      
 
 test("clientapp login" , async({page})=>{
 await page.goto("https://www.saucedemo.com/")
@@ -16,7 +16,7 @@ const count=await product.count()  // function so await is required
 for(let i=0;i<count;i++)
 {
     if(await product.nth(i).textContent()===productName){
-        await page.locator(".inventory_item").nth(i).locator("text=Add to cart").click()     //whole card should be located 
+        await page.locator(".inventory_item").nth(i).locator("text=Add to cart").click()     
         break
     }
 }
@@ -37,9 +37,7 @@ await expect(page.locator(".complete-header")).toHaveText("Thank you for your or
 await page.pause()
 })
 //debug mode : npx playwright test clientapp.spec.js --debug
-// in debug mode step over has to be given for line by line execution
-
 //ui mode : npx playwright test --ui  
-//allows traces , line by line screenshots
 
-//Automate using special locators
+
+
