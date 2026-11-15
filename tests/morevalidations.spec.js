@@ -24,7 +24,6 @@ test.only("Popup validations", async ({ page }) => {
        //await dialog.dismiss(); //Cancel Alert
     });
     await page.locator(".btn.btn-warning").click(); // Click the button that triggers the JavaScript alert
-  
     
 // Prompt Alert
     page.once("dialog", async dialog => {     
