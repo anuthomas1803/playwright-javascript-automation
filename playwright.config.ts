@@ -7,7 +7,7 @@ timeout:30*1000    //assertion error timeout
 reporter:"html",
 use:{
   browserName : "chromium",
-  headless : true // displays browser withou adding --headed while executing
+  headless : false // displays browser without adding --headed while executing
 }
 })
 module.exports=config

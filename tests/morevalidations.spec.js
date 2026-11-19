@@ -1,7 +1,7 @@
 const { test,expect } = require("@playwright/test");
 
 //Popup validations
-test.only("Popup validations", async ({ page }) => {
+test("Popup validations", async ({ page }) => {
    await page.goto("https://www.saucedemo.com/");
    await expect(page.locator(".error-message-container.error")).toBeHidden();
    await page.locator("#login-button").click();
@@ -33,3 +33,18 @@ test.only("Popup validations", async ({ page }) => {
     await page.getByRole("button", { name: "Click for Prompt Box" }).click(); // Click the button that triggers the prompt
    await page.pause();
 });
+//Screenshots
+test("Screenshot" ,async({page})=>{
+    await page.goto("https://www.saucedemo.com/")
+    await expect(page.locator(".error-message-container.error")).toBeHidden()
+    await page.locator("#login-button").click()
+    await page.locator(".error-message-container.error").screenshot({path:'error.png'}) //element screenshot
+    await expect(page.locator(".error-message-container.error")).toBeVisible()
+    await page.screenshot({path:'error1.png'}) //screenshot of page
+})
+//Image based comparison
+test.only("Visual Comparison",async({page})=>{
+await page.goto("https://www.saucedemo.com/")
+expect(await page.screenshot()).toMatchSnapshot('saucedemo.png')
+})
+

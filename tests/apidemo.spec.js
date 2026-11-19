@@ -9,4 +9,18 @@ test("get request- retrieve data", async({request})=>{
   //  console.log(body[0]) // Prints all properties of first object.
 } )
 
+test.only("post request- create data", async({request})=>{
+  const response=await request.post("https://jsonplaceholder.typicode.com/users",{
+    data:{
+      name:'Anu',
+      email:'anuthomas@gmail.com',
+      username:'Anumol'
+    }
+  })
+  expect(response.status()).toBe(201)
+  const responsebody=await response.json()
+  expect(responsebody.name).toBe('Anu')
+})
+
+
 
